@@ -18,7 +18,7 @@ before_install:
   - docker build -t zozo6015/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run zozo6015/react-test npm test -- --coverage
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then docker run zozo6015/react-test npm test -- --coverage; fi'
 
 deploy:
   provider: script
