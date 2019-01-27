@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: k8s-test-tk-tls
+spec:
+  secretName: k8s-test-tk
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: k8s-test.tk
+  dnsNames:
+    - k8s-test.tk
+    - www.k8s-test.tk
+  acme:
+    config:
+      - http01:
+          ingresClass: nginx
+        domains:
+          - k8s-test.tk
+          - www.k8s-test.tk
